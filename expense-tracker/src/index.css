@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Keep color-scheme for light/dark mode preference */
+  color-scheme: light dark;
+  color: rgb(0, 0, 0);
+  background-color: #242424; /* Default dark mode background */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure html, body, and the root element (#root) fill the entire viewport */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; /* Use height: 100% instead of min-height: 100vh on body */
+  /* Remove display: flex and place-items: center from body */
+  /* Add background-color here to ensure full page white in light mode */
+  background-color: #d0d0d5; /* Explicitly set body background to white by default */
+  overflow-x: hidden; /* Prevent horizontal scrolling if content overflows */
+}
+
+/* Apply body background color for dark mode based on root */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff; /* Light mode root background */
+  }
+  /* Ensure body also has white background in light mode, overriding any default */
+  body {
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* More specific overrides for OverlayPanel */
+.p-overlaypanel {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.p-overlaypanel .p-overlaypanel-content {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Target the arrow/pointer if it exists */
+.p-overlaypanel::before,
+.p-overlaypanel::after {
+  display: none !important;
+}
+
+/* Remove any default styling from the panel wrapper */
+.p-overlaypanel-flipped::before,
+.p-overlaypanel-flipped::after {
+  display: none !important;
+}
+
+.p-icon-field {
+  width: 100%;
+}
+
+.password-inline .p-password {
+  flex-direction: row !important;
+}
