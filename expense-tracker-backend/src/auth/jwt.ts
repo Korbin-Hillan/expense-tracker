@@ -18,7 +18,7 @@ export default async function generateToken(req: Request, res: Response) {
   }
 
   try {
-    const user = await collections.users?.findOne({ email }); // ✅ await here
+    const user = await collections.users?.findOne({ email });
 
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password." });
