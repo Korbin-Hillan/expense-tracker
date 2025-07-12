@@ -96,8 +96,7 @@ Once up and running expense-tracker will:
 
 ## Screenshots
 
-![Dashboard](<img width="1728" height="902" alt="Screenshot 2025-07-12 at 2 25 48 PM" src="https://github.com/user-attachments/assets/6db08469-45eb-40b6-a189-006ce1b9785a" />
-)
+![Dashboard](<img width="1728" height="902" alt="Screenshot 2025-07-12 at 2 25 48 PM" src="https://github.com/user-attachments/assets/1afbf59d-e0d5-48c8-aa47-0ae9e1085350" />)
 
 ## License
 
