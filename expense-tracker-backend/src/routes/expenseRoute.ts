@@ -25,7 +25,7 @@ router.post("/", verifyToken, async (req, res) => {
     description,
     amount,
     category,
-    date: new Date(date), // fixed property name to lowercase "date"
+    date: new Date(date),
     createdAt: new Date(),
   };
 
@@ -56,6 +56,80 @@ router.get("/", verifyToken, async (req, res) => {
   } catch (err) {
     console.error("Fetch error:", err);
     res.status(500).json({ message: "Failed to fetch expenses." });
+  }
+});
+
+router.put("/:id", verifyToken, async (req, res) => {
+  const expenseId = req.params.id;
+
+  if (!ObjectId.isValid(expenseId)) {
+    res.status(400).json({ message: "Invalid expense ID" });
+    return;
+  }
+
+  const { user } = req as AuthenticatedRequest;
+
+  if (!user?.id) {
+    res.status(401).json({ message: "Unauthorized user." });
+    return;
+  }
+
+  const { description, amount, category, date } = req.body;
+
+  try {
+    const result = await collections.expense?.updateOne(
+      {
+        _id: new ObjectId(expenseId),
+        userId: new ObjectId(user.id),
+      },
+      {
+        $set: {
+          description,
+          amount,
+          category,
+          date: new Date(date),
+          updatedAt: new Date(),
+        },
+      }
+    );
+    if (result?.matchedCount === 0) {
+      res.status(404).json({ message: "Expense not found or not yours." });
+      return;
+    }
+    res.status(200).json({ message: "Expense updated successfully." });
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ message: "Failed to update expense." });
+  }
+});
+
+router.delete("/:id", verifyToken, async (req, res) => {
+  const expenseId = req.params.id;
+
+  if (!ObjectId.isValid(expenseId)) {
+    res.status(400).json({ message: "Invalid expense ID" });
+    return;
+  }
+
+  const { user } = req as AuthenticatedRequest;
+
+  if (!user?.id) {
+    res.status(401).json({ message: "Unauthorized user." });
+    return;
+  }
+  try {
+    const result = await collections.expense?.deleteOne({
+      _id: new ObjectId(expenseId),
+      userId: new ObjectId(user.id),
+    });
+    if (result?.deletedCount === 0) {
+      res.status(404).json({ message: "Expense not found or not yours." });
+      return;
+    }
+    res.status(200).json({ message: "Expense deleted successfully." });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ message: "Failed to delete expense." });
   }
 });
 

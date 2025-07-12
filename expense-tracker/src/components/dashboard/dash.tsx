@@ -88,7 +88,6 @@ export default function Dashboard() {
 
     try {
       if (editingExpense) {
-        // Editing existing expense
         await axios.put(
           `http://localhost:3000/api/expense/${editingExpense._id}`,
           formData,
@@ -99,7 +98,6 @@ export default function Dashboard() {
           }
         );
       } else {
-        // Creating new expense
         await axios.post("http://localhost:3000/api/expense", formData, {
           headers: {
             Authorization: `Bearer ${token}`,
