@@ -65,7 +65,6 @@ export default function Dashboard() {
         },
       });
 
-      // Refresh list after deletion
       const res = await axios.get("http://localhost:3000/api/expense", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -105,7 +104,6 @@ export default function Dashboard() {
         });
       }
 
-      // Refresh list
       const res = await axios.get("http://localhost:3000/api/expense", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -113,7 +111,6 @@ export default function Dashboard() {
       });
       setExpenses(res.data);
 
-      // Reset state
       setFormData({
         description: "",
         amount: "",
