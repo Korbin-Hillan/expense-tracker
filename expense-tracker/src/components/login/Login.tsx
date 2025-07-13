@@ -8,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [type, setType] = useState("password");
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{ general?: string }>({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -86,10 +86,17 @@ export default function Login() {
         </div>
 
         <Button
-          label="LOGIN"
+          label={isLoading ? "Logging in..." : "LOGIN"}
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white mt-4"
+          disabled={isLoading}
+          className={`bg-blue-500 hover:bg-blue-600 text-white mt-4 ${
+            isLoading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         />
+
+        {errors.general && (
+          <p className="text-red-500 text-sm mt-2">{errors.general}</p>
+        )}
         <Button
           label="Register"
           type="button"

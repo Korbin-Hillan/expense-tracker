@@ -48,7 +48,7 @@ export interface RecurringIncome {
 
 export interface IncomeData {
   description: string;
-  amount: string | number;
+  amount: number;
   isRecurring: boolean;
   recurringInterval: string;
   date: Date;
@@ -56,7 +56,7 @@ export interface IncomeData {
 
 export interface FormData {
   description: string;
-  amount: string | number;
+  amount: number;
   category: string;
   isRecurring: boolean;
   recurringInterval: string;

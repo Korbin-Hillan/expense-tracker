@@ -51,7 +51,6 @@ export const generateRecurringExpenses = (
   monthsAhead: number = 12
 ): Expense[] => {
   const generated: Expense[] = [];
-  const currentDate = new Date();
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + monthsAhead);
 

@@ -41,25 +41,11 @@ export default function Dashboard() {
     updateExpense,
   } = useExpenses();
 
-  const {
-    income,
-    loading: incomeLoading,
-    error: incomeError,
-    filterByMonthIncome,
-    deleteIncome,
-    addIncome,
-    updateIncome,
-  } = useIncome();
+  const { income, filterByMonthIncome, deleteIncome, addIncome, updateIncome } =
+    useIncome();
 
-  const {
-    recurringIncomes,
-    loading: recurringIncomeLoading,
-    error: recurringIncomeError,
-    addRecurringIncome,
-    updateRecurringIncome,
-    toggleRecurringIncome,
-    deleteRecurringIncome,
-  } = useRecurringIncomes();
+  const { recurringIncomes, addRecurringIncome, updateRecurringIncome } =
+    useRecurringIncomes();
 
   const {
     recurringExpenses,
@@ -106,12 +92,6 @@ export default function Dashboard() {
   const handleEditIncome = (income: Income) => {
     setEditingIncome(income);
     setEditingRecurringIncome(null);
-    setShowAddIncomeDialog(true);
-  };
-
-  const handleEditRecurringIncome = (recurring: RecurringIncome) => {
-    setEditingRecurringIncome(recurring);
-    setEditingIncome(null);
     setShowAddIncomeDialog(true);
   };
 

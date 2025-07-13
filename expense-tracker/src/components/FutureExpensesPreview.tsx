@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Calendar } from "primereact/calendar";
-import { RecurringExpense, Expense } from "../types";
+import { RecurringExpense } from "../types";
 import { generateRecurringExpenses } from "../utils/recurringUtils";
 import { getCategoryIcon } from "../utils/categoryUtils";
 

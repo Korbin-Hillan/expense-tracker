@@ -29,7 +29,7 @@ export default function ExpenseDialog({
 }: ExpenseDialogProps) {
   const [formData, setFormData] = useState<FormData>({
     description: "",
-    amount: "",
+    amount: 0,
     category: "",
     isRecurring: false,
     recurringInterval: "",
@@ -60,7 +60,7 @@ export default function ExpenseDialog({
     } else {
       setFormData({
         description: "",
-        amount: "",
+        amount: 0,
         category: "",
         isRecurring: false,
         recurringInterval: "",
@@ -112,7 +112,7 @@ export default function ExpenseDialog({
       // Reset form after successful save
       setFormData({
         description: "",
-        amount: "",
+        amount: 0,
         category: "",
         isRecurring: false,
         recurringInterval: "",
@@ -177,7 +177,7 @@ export default function ExpenseDialog({
           <InputNumber
             value={formData.amount}
             onValueChange={(e) =>
-              setFormData({ ...formData, amount: e.value || "" })
+              setFormData({ ...formData, amount: e.value ?? 0 })
             }
             mode="currency"
             currency="USD"

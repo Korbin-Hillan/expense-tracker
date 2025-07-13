@@ -7,12 +7,11 @@ import { InputNumber } from "primereact/inputnumber";
 import { Button } from "primereact/button";
 import { Checkbox } from "primereact/checkbox";
 import { FiPlus } from "react-icons/fi";
-import { Expense, RecurringIncome, IncomeData } from "../types";
-import { categories } from "../utils/categoryUtils";
+import { Income, RecurringIncome, IncomeData } from "../types";
 
 interface IncomeDialogProps {
   visible: boolean;
-  editingIncome: Expense | null;
+  editingIncome: Income | null;
   editingRecurringIncome?: RecurringIncome | null;
   onHide: () => void;
   onSave: (formData: IncomeData) => Promise<void>;
@@ -29,7 +28,7 @@ export default function IncomeDialog({
 }: IncomeDialogProps) {
   const [formData, setFormData] = useState<IncomeData>({
     description: "",
-    amount: "",
+    amount: 0,
     isRecurring: false,
     recurringInterval: "",
     date: new Date(),
@@ -57,7 +56,7 @@ export default function IncomeDialog({
     } else {
       setFormData({
         description: "",
-        amount: "",
+        amount: 0,
         isRecurring: false,
         recurringInterval: "",
         date: new Date(),
@@ -106,7 +105,7 @@ export default function IncomeDialog({
       // Reset form after successful save
       setFormData({
         description: "",
-        amount: "",
+        amount: 0,
         isRecurring: false,
         recurringInterval: "",
         date: new Date(),
@@ -170,7 +169,7 @@ export default function IncomeDialog({
           <InputNumber
             value={formData.amount}
             onValueChange={(e) =>
-              setFormData({ ...formData, amount: e.value || "" })
+              setFormData({ ...formData, amount: e.value ?? 0 })
             }
             mode="currency"
             currency="USD"

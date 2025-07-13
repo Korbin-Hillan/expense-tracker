@@ -1,4 +1,3 @@
-import React from "react";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
