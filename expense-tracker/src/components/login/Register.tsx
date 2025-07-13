@@ -30,11 +30,14 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, password }),
-      });
+      const res = await fetch(
+        "https://expense-tracker-gqth.onrender.com/api/auth/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, name, password }),
+        }
+      );
 
       const data = await res.json();
 

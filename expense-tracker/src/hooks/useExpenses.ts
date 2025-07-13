@@ -22,11 +22,14 @@ export const useExpenses = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("authToken");
-      const res = await axios.get("http://localhost:3000/api/expense", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://expense-tracker-gqth.onrender.com/api/expense",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setExpenses(res.data);
       setError(null);
     } catch (error) {
@@ -50,11 +53,14 @@ export const useExpenses = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/expense/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://expense-tracker-gqth.onrender.com/api/expense/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchExpenses();
     } catch (error) {
       console.error("Failed to delete expense:", error);
@@ -65,11 +71,15 @@ export const useExpenses = () => {
   const addExpense = async (formData: FormData) => {
     const token = localStorage.getItem("authToken");
     try {
-      await axios.post("http://localhost:3000/api/expense", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "https://expense-tracker-gqth.onrender.com/api/expense",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchExpenses();
     } catch (error) {
       console.error("Error saving expense:", error);
@@ -80,11 +90,15 @@ export const useExpenses = () => {
   const updateExpense = async (id: number, formData: FormData) => {
     const token = localStorage.getItem("authToken");
     try {
-      await axios.put(`http://localhost:3000/api/expense/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.put(
+        `https://expense-tracker-gqth.onrender.com/api/expense/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchExpenses();
     } catch (error) {
       console.error("Error updating expense:", error);

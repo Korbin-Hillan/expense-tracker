@@ -26,11 +26,14 @@ export const useIncome = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("authToken");
-      const res = await axios.get("http://localhost:3000/api/income", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(
+        "https://expense-tracker-gqth.onrender.com/api/income",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setIncome(res.data);
       setError(null);
     } catch (error) {
@@ -54,11 +57,14 @@ export const useIncome = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/income/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://expense-tracker-gqth.onrender.com/api/income/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchIncome();
     } catch (error) {
       console.error("Failed to delete income:", error);
@@ -69,11 +75,15 @@ export const useIncome = () => {
   const addIncome = async (formData: IncomeData) => {
     const token = localStorage.getItem("authToken");
     try {
-      await axios.post("http://localhost:3000/api/income", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "https://expense-tracker-gqth.onrender.com/api/income",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchIncome();
     } catch (error) {
       console.error("Error saving income:", error);
@@ -84,11 +94,15 @@ export const useIncome = () => {
   const updateIncome = async (id: number, formData: IncomeData) => {
     const token = localStorage.getItem("authToken");
     try {
-      await axios.put(`http://localhost:3000/api/income/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.put(
+        `https://expense-tracker-gqth.onrender.com/api/income/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchIncome();
     } catch (error) {
       console.error("Error updating income:", error);

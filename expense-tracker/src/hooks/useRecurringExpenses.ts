@@ -14,7 +14,7 @@ export const useRecurringExpenses = () => {
       setLoading(true);
       const token = localStorage.getItem("authToken");
       const res = await axios.get(
-        "http://localhost:3000/api/recurring-expense",
+        "https://expense-tracker-gqth.onrender.com/api/recurring-expense",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.post(
-        "http://localhost:3000/api/recurring-expense",
+        "https://expense-tracker-gqth.onrender.com/api/recurring-expense",
         recurringData,
         {
           headers: {
@@ -58,7 +58,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.put(
-        `http://localhost:3000/api/recurring-expense/${id}`,
+        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
         recurringData,
         {
           headers: {
@@ -77,7 +77,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.patch(
-        `http://localhost:3000/api/recurring-expense/${id}`,
+        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
         { isActive },
         {
           headers: {
@@ -101,11 +101,14 @@ export const useRecurringExpenses = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/recurring-expense/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchRecurringExpenses(); // Refresh the list
     } catch (error) {
       console.error("Failed to delete recurring expense:", error);

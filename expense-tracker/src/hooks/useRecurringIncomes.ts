@@ -14,7 +14,7 @@ export const useRecurringIncomes = () => {
       setLoading(true);
       const token = localStorage.getItem("authToken");
       const res = await axios.get(
-        "http://localhost:3000/api/recurring-income",
+        "https://expense-tracker-gqth.onrender.com/api/recurring-income",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const useRecurringIncomes = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.post(
-        "http://localhost:3000/api/recurring-income",
+        "https://expense-tracker-gqth.onrender.com/api/recurring-income",
         recurringData,
         {
           headers: {
@@ -58,7 +58,7 @@ export const useRecurringIncomes = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.put(
-        `http://localhost:3000/api/recurring-income/${id}`,
+        `https://expense-tracker-gqth.onrender.com/api/recurring-income/${id}`,
         recurringData,
         {
           headers: {
@@ -77,7 +77,7 @@ export const useRecurringIncomes = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.patch(
-        `http://localhost:3000/api/recurring-income/${id}`,
+        `https://expense-tracker-gqth.onrender.com/api/recurring-income/${id}`,
         { isActive },
         {
           headers: {
@@ -101,11 +101,14 @@ export const useRecurringIncomes = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/recurring-income/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://expense-tracker-gqth.onrender.com/api/recurring-income/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       await fetchRecurringIncomes(); // Refresh the list
     } catch (error) {
       console.error("Failed to delete recurring income:", error);
