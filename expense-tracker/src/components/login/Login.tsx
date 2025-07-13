@@ -30,7 +30,7 @@ export default function Login() {
 
     try {
       const res = await fetch(
-        "https://expense-tracker-gqth.onrender.com/api/auth/login",
+        `${import.meta.env.VITE_BACKEND_URI}/api/auth/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

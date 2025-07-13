@@ -14,7 +14,7 @@ export const useRecurringExpenses = () => {
       setLoading(true);
       const token = localStorage.getItem("authToken");
       const res = await axios.get(
-        "https://expense-tracker-gqth.onrender.com/api/recurring-expense",
+        `${import.meta.env.VITE_BACKEND_URI}/api/recurring-expense`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.post(
-        "https://expense-tracker-gqth.onrender.com/api/recurring-expense",
+        `${import.meta.env.VITE_BACKEND_URI}/api/recurring-expense`,
         recurringData,
         {
           headers: {
@@ -58,7 +58,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.put(
-        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/recurring-expense/${id}`,
         recurringData,
         {
           headers: {
@@ -77,7 +77,7 @@ export const useRecurringExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.patch(
-        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/recurring-expense/${id}`,
         { isActive },
         {
           headers: {
@@ -102,7 +102,7 @@ export const useRecurringExpenses = () => {
 
     try {
       await axios.delete(
-        `https://expense-tracker-gqth.onrender.com/api/recurring-expense/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/recurring-expense/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

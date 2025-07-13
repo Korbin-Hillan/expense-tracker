@@ -28,10 +28,9 @@ export default function Register() {
       setIsLoading(false);
       return;
     }
-
     try {
       const res = await fetch(
-        "https://expense-tracker-gqth.onrender.com/api/auth/register",
+        `${import.meta.env.VITE_BACKEND_URI}/api/auth/register`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

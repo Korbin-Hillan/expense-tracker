@@ -17,13 +17,12 @@ export const useExpenses = () => {
   const calculateTotalAmount = (expenses: Expense[]) => {
     return expenses.reduce((sum, expense) => sum + expense.amount, 0);
   };
-
   const fetchExpenses = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("authToken");
       const res = await axios.get(
-        "https://expense-tracker-gqth.onrender.com/api/expense",
+        `${import.meta.env.VITE_BACKEND_URI}/api/expense`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +53,7 @@ export const useExpenses = () => {
 
     try {
       await axios.delete(
-        `https://expense-tracker-gqth.onrender.com/api/expense/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/expense/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -72,7 +71,7 @@ export const useExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.post(
-        "https://expense-tracker-gqth.onrender.com/api/expense",
+        `${import.meta.env.VITE_BACKEND_URI}/api/expense`,
         formData,
         {
           headers: {
@@ -91,7 +90,7 @@ export const useExpenses = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.put(
-        `https://expense-tracker-gqth.onrender.com/api/expense/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/expense/${id}`,
         formData,
         {
           headers: {

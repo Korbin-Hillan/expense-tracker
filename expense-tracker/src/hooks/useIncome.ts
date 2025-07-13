@@ -27,7 +27,7 @@ export const useIncome = () => {
       setLoading(true);
       const token = localStorage.getItem("authToken");
       const res = await axios.get(
-        "https://expense-tracker-gqth.onrender.com/api/income",
+        `${import.meta.env.VITE_BACKEND_URI}/api/income`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ export const useIncome = () => {
 
     try {
       await axios.delete(
-        `https://expense-tracker-gqth.onrender.com/api/income/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/income/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -76,7 +76,7 @@ export const useIncome = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.post(
-        "https://expense-tracker-gqth.onrender.com/api/income",
+        `${import.meta.env.VITE_BACKEND_URI}/api/income`,
         formData,
         {
           headers: {
@@ -95,7 +95,7 @@ export const useIncome = () => {
     const token = localStorage.getItem("authToken");
     try {
       await axios.put(
-        `https://expense-tracker-gqth.onrender.com/api/income/${id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/income/${id}`,
         formData,
         {
           headers: {
