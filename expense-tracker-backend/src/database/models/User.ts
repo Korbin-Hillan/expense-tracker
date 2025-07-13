@@ -5,6 +5,29 @@ export interface NewUserInput {
   name: string;
   password: string;
 }
+export interface recurringIncome {
+  _id?: ObjectId;
+  userId: ObjectId;
+  description: string;
+  amount: number;
+  startDate: Date;
+  interval: "Weekly" | "Monthly" | "Annually";
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+export interface RecurringExpense {
+  _id?: ObjectId;
+  userId: ObjectId;
+  description: string;
+  amount: number;
+  category: string;
+  startDate: Date;
+  interval: "Weekly" | "Monthly" | "Annually";
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export interface UserAttributes {
   id?: string;

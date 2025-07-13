@@ -10,7 +10,9 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import expenseRoute from "./routes/expenseRoute";
-
+import recurringExpenseRoute from "./routes/recurringExpenseRoute";
+import incomeRoute from "./routes/incomeRoute";
+import recurringIncomeRoute from "./routes/recurringIncomeRoute";
 const sampleUser = {
   email: "johndoe@example.com",
   name: "John Doe",
@@ -30,8 +32,10 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/expense", expenseRoute);
+app.use("/api/recurring-expense", recurringExpenseRoute);
+app.use("/api/income", incomeRoute);
+app.use("/api/recurring-income", recurringIncomeRoute);
 app.use("/api/user", userRoutes);
-
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   try {
     res.status(200).json({

@@ -1,12 +1,19 @@
 import * as dotenv from "dotenv";
 import { MongoClient, ServerApiVersion, Db, Collection } from "mongodb";
-import { UserAttributes } from "../database/models/User";
+import {
+  UserAttributes,
+  RecurringExpense,
+  recurringIncome,
+} from "../database/models/User";
 
 dotenv.config();
 
 interface Collections {
   expense?: Collection;
   users?: Collection<UserAttributes>;
+  recurringExpense?: Collection<RecurringExpense>;
+  income?: Collection;
+  recurringIncome?: Collection<recurringIncome>;
 }
 
 export const collections: Collections = {};
@@ -44,6 +51,9 @@ export async function connectToDatabase() {
 
     await db.command({ ping: 1 });
 
+    collections.income = db.collection("incomes");
+    collections.recurringIncome = db.collection("recurringIncomes");
+    collections.recurringExpense = db.collection("recurringExpenses");
     collections.expense = db.collection("expenses");
     collections.users = db.collection<UserAttributes>("users");
 

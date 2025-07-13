@@ -6,7 +6,14 @@ import { ObjectId } from "mongodb";
 const router = express.Router();
 
 router.post("/", verifyToken, async (req, res) => {
-  const { description, amount, category, date } = req.body;
+  const {
+    description,
+    amount,
+    category,
+    isRecurring,
+    recurringInterval,
+    date,
+  } = req.body;
 
   if (!description || !amount || !category || !date) {
     res.status(400).json({ message: "All fields are required." });
@@ -25,6 +32,8 @@ router.post("/", verifyToken, async (req, res) => {
     description,
     amount,
     category,
+    isRecurring,
+    recurringInterval,
     date: new Date(date),
     createdAt: new Date(),
   };
@@ -74,7 +83,14 @@ router.put("/:id", verifyToken, async (req, res) => {
     return;
   }
 
-  const { description, amount, category, date } = req.body;
+  const {
+    description,
+    amount,
+    category,
+    isRecurring,
+    recurringInterval,
+    date,
+  } = req.body;
 
   try {
     const result = await collections.expense?.updateOne(
@@ -87,6 +103,8 @@ router.put("/:id", verifyToken, async (req, res) => {
           description,
           amount,
           category,
+          isRecurring,
+          recurringInterval,
           date: new Date(date),
           updatedAt: new Date(),
         },
