@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node -r dotenv/config node_modules/.bin/nodemon src/app.ts",
+    "build": "tsc",
     "start": "node -r dotenv/config dist/app.js"
   },
   "keywords": [],
